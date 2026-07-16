@@ -97,9 +97,12 @@ client.on('interactionCreate', async interaction => {
   }
 });
 
-const token = process.env.DISCORD_TOKEN;
-console.log('DISCORD_TOKEN present:', !!token);
-console.log('DISCORD_TOKEN length:', token ? token.length : 0);
-console.log('DISCORD_TOKEN first/last chars:', token ? `${token.slice(0, 4)}...${token.slice(-4)}` : 'N/A');
+const rawToken = process.env.DISCORD_TOKEN;
+const token = rawToken ? rawToken.trim() : rawToken;
+console.log('DISCORD_TOKEN present:', !!rawToken);
+console.log('DISCORD_TOKEN raw length:', rawToken ? rawToken.length : 0);
+console.log('DISCORD_TOKEN trimmed length:', token ? token.length : 0);
+console.log('DISCORD_TOKEN first 10 chars (escaped):', rawToken ? JSON.stringify(rawToken.slice(0, 10)) : 'N/A');
+console.log('DISCORD_TOKEN last 10 chars (escaped):', rawToken ? JSON.stringify(rawToken.slice(-10)) : 'N/A');
 
 client.login(token);
