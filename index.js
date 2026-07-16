@@ -97,4 +97,9 @@ client.on('interactionCreate', async interaction => {
   }
 });
 
-client.login(process.env.DISCORD_TOKEN);
+const token = process.env.DISCORD_TOKEN;
+console.log('DISCORD_TOKEN present:', !!token);
+console.log('DISCORD_TOKEN length:', token ? token.length : 0);
+console.log('DISCORD_TOKEN first/last chars:', token ? `${token.slice(0, 4)}...${token.slice(-4)}` : 'N/A');
+
+client.login(token);
